@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Documentation</title>
+  <script type="text/javascript" async 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  <style>
+    body {
+      background-color: #000000;
+      color: rgb(255, 255, 255);
+      font-family: 'Times New Roman', Times, serif;
+      margin: 0 auto;
+      max-width: 1200px;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin: 20px 0;
+    }
+    h1 {
+      font-size: 2em;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+    p, ol, ul {
+      width: 100%;
+      max-width: 800px;
+      margin: 10px auto;
+      text-align: justify;
+      line-height: 1.6;
+    }
+    ol, ul {
+      padding-left: 30px;
+    }
+    li {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lunar Lander Reinforcement Learning</h1>
+  <p style="white-space: pre; font-family: monospace; line-height: 1.2;">
+
+                                   _____________         .         _____________
+                                  |_|_|_|_|_|_|_|      _=|=_      |_|_|_|_|_|_|_|
+                                  |_|_|_|_|_|_|_|_____[_# # ]_____|_|_|_|_|_|_|_|
+                                  |_|_|_|_|_|_|_|    \Я[_+_]R/    |_|_|_|_|_|_|_|  
+                                                     -[_I_I_]-
+                                                    /[_[_|_]_]\  
+                                                   /    "|"    \     
+           
+  
+</p>
+  <h2>Lunar Lander Deep Q-Learning (Reinforcement Learning) 
+  
+  </h2>
+  <p></p>
+  
+
+  <p>DQN is an improvement over Q-Learning, a reinforcement learning (RL) algorithm used to train an agent to take optimal actions in an environment. Instead of using a Q-table, DQN uses a neural network to approximate the Q-values for each state-action pair.</p>
+  <div style="text-align: center;">
+    <video width="690" height="420" controls>
+      <source src="Untitled video - Made with Clipchamp.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video><p></p> !under development
+</p><br>
+<br>
+    </div>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML">
+    
+    <mrow>
+      <mi>Q</mi><mo>(</mo><mi>s</mi><mo>,</mo><mi>a</mi><mo>)</mo>
+      <mo>&larr;</mo>
+      <mi>Q</mi>
+      <mo>(</mo>
+      <mi>s</mi>
+      <mo>,</mo>
+      <mi>a</mi>
+      <mo>)</mo>
+      <mo>+</mo>
+      <mi>α</mi>
+      <mo>(</mo>
+      <mi>r</mi>
+      <mo>+</mo>
+      <mi>γ</mi>
+      <mo>&InvisibleTimes;</mo>
+      <mrow>
+        <mo>max</mo>
+        <mo>&ApplyFunction;</mo>
+        <mrow>
+          <mo>(</mo>
+          <mi>Q</mi>
+          <mo>(</mo>
+          <mi>s'</mi>
+          <mo>,</mo>
+          <mi>a'</mi>
+          <mo>)</mo>
+          <mo>)</mo>
+        </mrow>
+      </mrow>
+      <mo>-</mo>
+      <mi>Q</mi>
+      <mo>(</mo>
+      <mi>s</mi>
+      <mo>,</mo>
+      <mi>a</mi>
+      <mo>)</mo>
+      <mo>)</mo>
+    </mrow>
+  </math></p>
+  <ol>
+    <li><strong>Mathematical Foundation </strong>The agent tries to learn the optimal action-value function Q(S,A) , The agent tries to learn the optimal action-value function </li>
+    <h3>Q-Function</h3>
+    <p>
+        \[
+        Q^\pi(s, a) = \mathbb{E} \left[ \sum_{t=0}^{\infty} \gamma^t R(s_t, a_t) \mid s_0 = s, a_0 = a \right]
+        \]
+    </p>
+    <h3>Bellman Equation for Q-Function</h3>
+    <p>
+        \[
+        Q(s, a) = r + \gamma \max_{a'} Q(s', a')
+        \]
+    </p>
+
+    <li><strong>Initialization </strong> The environment has 8-dimensional state space and 4 possible actions (fire left engine, fire right engine, fire main engine, do nothing).</li>
+    <p>
+
+      <div style="text-align: center;">
+        <video width="640" height="360" controls>
+          <source src="crash-negate.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+  </ol>
+
+  <p><strong>3. Deep Q-Network (DQN) Approximation</strong></p>
+  <p>
+    Since storing and updating a Q-table explicitly is infeasible for large state spaces, we approximate  Q(S,A) using a neural network Q(theta)(S,A)  parameterized by 𝜃 .
+     The neural network learns to minimize the Mean Squared Error (MSE) between the predicted Q-values and the target Q-values.
+    </p>
+    <br>
+    <br>
+    <p><strong>4. Optimal Q-Function</strong></p>
+    <p>
+        \[
+        Q^*(s, a) = \mathbb{E} \left[ R(s, a) + \gamma \max_{a'} Q^*(s', a') \right]
+        \]
+    </p>
+    <p><strong>Loss Function</strong></p>
+    <p>
+        \[
+        \mathcal{l}(\theta) = \mathbb{e} \left[ (y - Q_{\theta}(s, a))^2 \right]
+        \]
+    </p>
+  <p>
+    <strong>
+   4.Exploration vs Exploitation: The Epsilon-Greedy Policy
+    </strong>
+    </p>
+    <p>
+      To balance exploration (trying new actions) and exploitation (using the best action known so far), DQN follows an ε-greedy policy . This ensures that the agent explores more initially and exploits its learned knowledge later.
+      The agent starts with random actions and learns through trial and error.
+Rewards guide the agent toward soft landings.
+Over time, the Q-network improves and the agent learns an optimal landing strategy.
+      </p>
+  
+      <br>
+      <p>
+        <strong>
+        DQN - MODEL
+        </strong> 
+        </p>
+      <div style="text-align: center;">
+        <video width="640" height="360" controls>
+          <source src="progeniter-negate.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <br>
+      <br>
+      
+      <h1>Other models</h1>
+      <ol>
+        <li><strong>Vanilla DQN</strong></li>
+        <li><strong>Monte Carlo</strong></li>
+        <li><strong>Rainbow DQN</strong></li>
+      </ol>
+    
+      <h2>Vanilla DQN</h2>
+      <div style="text-align: center;">
+        <video width="640" height="360" controls>
+          <source src="d9255b7d-d80d-4220-8ab1-246cf71f630c.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <br>
+      <br>
+
+      <h2>Rainbow DQN , Landing With Least Impact</h2>
+      <div style="text-align: center;">
+        <video width="640" height="360" controls>
+          <source src="softlanding-negate (1).mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <h2>Monte Carlo (Unstable)</h2>
+      <div style="text-align: center;">
+        <video width="640" height="360" controls>
+          <source src="download-negate.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      
+</body>
+</html>
